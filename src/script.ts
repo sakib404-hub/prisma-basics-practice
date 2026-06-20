@@ -30,14 +30,6 @@ const main = async () => {
     //     ]
     // })
 
-    //? finding all the users including posts if they have any
-    const allUsers = await prisma.user.findMany({
-        include: {
-            posts: true,
-        },
-    });
-    console.log(allUsers);
-
     //? posting a new post for a specific user
 
     const newPost = await prisma.post.createMany({
@@ -142,6 +134,15 @@ const main = async () => {
             },
         ],
     });
+
+
+     //? finding all the users including posts if they have any
+    const allUsers = await prisma.user.findMany({
+        include: {
+            posts: true,
+        },
+    });
+    console.log(JSON.stringify(allUsers, null, 2));
 };
 
 main()
