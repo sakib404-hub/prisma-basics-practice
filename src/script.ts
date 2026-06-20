@@ -39,6 +39,25 @@ const main = async()=>{
         }
     })
     console.log(allUsers);
+
+    //? posting a new post for a specific user
+
+    const newPost = await prisma.post.createMany({
+        data : [
+            {
+            title : 'My first post',
+            content : 'This is my first post',
+            published : true,
+            authorId : 1
+            },
+            {
+                title : 'My Second Post',
+                content : 'This is my second post',
+                published: true,
+                authorId : 1
+            }
+        ]
+    })
 }
 
 main()
