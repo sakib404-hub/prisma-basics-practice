@@ -2,37 +2,43 @@ import {prisma} from './lib/prisma';
 
 const main = async()=>{
 
-    const users = await prisma.user.createMany({
-        data : [
-            {
-                name : 'Ariyan Ahmed Shakib',
-                email : 'ariyran@gmail.com'
-            },
-            {
-                name : 'Niloy Khan',
-                email : 'niloy@gmail.com'
-            },
-            {
-                name : 'Imran Bhuyan',
-                email : 'imran@gmail.com'
-            },
-            {
-                name : 'Foysal Ahmed',
-                email : 'foysal@gmail.com'
-            },
-            {
-                name : 'Sajid Mahmud',
-                email : 'sajid@gmail.com'
-            },
-            {
-                name : 'Moni',
-                email : 'moni@gmail.com'
-            }
-        ]
+    // const users = await prisma.user.createMany({
+    //     data : [
+    //         {
+    //             name : 'Ariyan Ahmed Shakib',
+    //             email : 'ariyran@gmail.com'
+    //         },
+    //         {
+    //             name : 'Niloy Khan',
+    //             email : 'niloy@gmail.com'
+    //         },
+    //         {
+    //             name : 'Imran Bhuyan',
+    //             email : 'imran@gmail.com'
+    //         },
+    //         {
+    //             name : 'Foysal Ahmed',
+    //             email : 'foysal@gmail.com'
+    //         },
+    //         {
+    //             name : 'Sajid Mahmud',
+    //             email : 'sajid@gmail.com'
+    //         },
+    //         {
+    //             name : 'Moni',
+    //             email : 'moni@gmail.com'
+    //         }
+    //     ]
+    // })
+     
+
+    //? finding all the users including posts if they have any
+    const allUsers = await prisma.user.findMany({
+        include :{
+            posts : true
+        }
     })
-
-    console.log('created users are : ',users);
-
+    console.log(allUsers);
 }
 
 main()
